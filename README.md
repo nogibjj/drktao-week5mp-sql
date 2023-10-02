@@ -5,11 +5,11 @@ In this project, I created python scripts to connect to the `GroceryDB` database
 2. `transform_load.py` - transforms and loads the dataset into the local SQLite3 database
 3. `query.py` - performs a variety of queries on the database, including:
 
-        1. `create_db()` - creates a new table with column names if needed
-        2. `read_db()` - displays rows of the data
-        3. `update_db()` - updates certain fields of the data
-        4. `delete_tb()` - deletes a table from the database
-        5. two additional queries that display rows based on certain conditions
+        `create_db()` - creates a new table with column names if needed
+        `read_db()` - displays rows of the data
+        `update_db()` - updates certain fields of the data
+        `delete_tb()` - deletes a table from the database
+        two additional queries that display rows based on certain conditions
 
 As with many prior projects, the repo also contains the following files:
 1. `Makefile` - commands for `make install`, `make format`, `make lint`, and `make test`
