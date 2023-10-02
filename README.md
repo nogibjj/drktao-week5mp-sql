@@ -4,6 +4,7 @@ In this project, I created python scripts to connect to the `GroceryDB` database
 1. `extract.py` - extracts a dataset from a URL and creates a file path within the repo
 2. `transform_load.py` - transforms and loads the dataset into the local SQLite3 database
 3. `query.py` - performs a variety of queries on the database, including:
+
         1. `create_db()` - creates a new table with column names if needed
         2. `read_db()` - displays rows of the data
         3. `update_db()` - updates certain fields of the data
