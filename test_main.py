@@ -6,7 +6,6 @@ from mylib.extract import extract
 
 
 class testFDBFunctions(unittest.TestCase):
-
     def test_create_db(self):
         result = create_db()
         self.assertEqual(result, "Success", "Failed to create table")
@@ -14,14 +13,14 @@ class testFDBFunctions(unittest.TestCase):
     def test_read_db(self):
         extract()
         load()
-        conn=sqlite3.connect("GroceryDB.db")
+        conn = sqlite3.connect("GroceryDB.db")
         result = read_db(conn)
         self.assertEqual(result, "Success", "Failed to read table")
 
     def test_update_db(self):
         extract()
         load()
-        conn=sqlite3.connect("GroceryDB.db")
+        conn = sqlite3.connect("GroceryDB.db")
         result = update_db(conn)
         self.assertEqual(result, "Success", "Failed to update table")
 
