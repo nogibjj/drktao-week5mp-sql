@@ -13,6 +13,5 @@ ipython==8.6.0
 sqlalchemy==1.4.44
 
 requests
-prettytable
 
 
