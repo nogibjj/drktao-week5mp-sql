@@ -1,18 +1,17 @@
-"""
-Main cli or app entry point
-"""
+from mylib.extract import extract
+from mylib.query import Query1, Query2, Query3
+from mylib.transform_load import load
 
-from mylib.calculator import add
-import click
+print("Extracting data...")
+extract()
 
+print("Loading data...")
+load()
 
-@click.command("add")
-@click.argument("a", type=int)
-@click.argument("b", type=int)
-def add_cli(a, b):
-    click.echo(add(a, b))
-
-
-if __name__ == "__main__":
-    # pylint: disable=no-value-for-parameter
-    add_cli()
+print("Querying data...")
+Query1()
+print()
+Query2()
+print()
+Query3()
+print()
