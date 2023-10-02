@@ -1,53 +1,65 @@
 import sqlite3
 from prettytable import PrettyTable
 
-def Query1():
-    '''Query the top 5 rows of the GroceryDB table'''
+def create_db():
     conn = sqlite3.connect("GroceryDB.db")
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM GroceryDB LIMIT 5 OFFSET 1")
+    cursor.execute(
+        """CREATE TABLE IF NOT EXISTS GroceryDB
+                      (grocery name INTEGER PRIMARY KEY
+                      count_products INTEGER
+                      ingred_FPro FLOAT
+                      avg_FPro_products FLOAT
+                      avg_distance_root FLOAT
+                      ingred_normalization_term	FLOAT
+                      semantic_tree_name CHAR
+                      semantic_tree_node CHAR)"""
+    )
+    conn.commit()
+    print("Table created")
+    return conn
 
-    column_names = [description[0] for description in cursor.description]
+def read_db(conn):
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM GroceryDB")
+    rows = cursor.fetchall()
 
-    table = PrettyTable(column_names) # initialize table with column names
+    for row in rows:
+        print(row)
+    print("Table read")
 
-    for row in cursor.fetchall():
-        table.add_row(row) # fetch rows and add them to the table
+def update_db(conn):
+    cursor = conn.cursor()
+    cursor.execute("UPDATE GroceryDB SET semantic_tree_name = 'coffee' WHERE general name = 'arabica coffee'")
+    conn.commit()
+    print("Table updated")
 
-    print(table)
-
+def delete_tb():
+    conn = sqlite3.connect("GroceryDB.db")
+    cursor = conn.cursor()
+    cursor.execute(
+        "DROP TABLE IF EXISTS GroceryDB"
+    )
+    conn.commit()
     conn.close()
+    print("Table dropped")
 
-    return "Success"
+def Query1():
+    conn = sqlite3.connect("GroceryDB.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM GroceryDB WHERE CONTAINS(general name, 'coffee')")
+    rows = cursor.fetchall()
+
+    for row in rows:
+        print(row)
+    print("rows retrieved")
 
 def Query2():
-    '''Update count_products of Arabica Coffee in GroceryDB table'''
     conn = sqlite3.connect("GroceryDB.db")
     cursor = conn.cursor()
+    cursor.execute("SELECT general name FROM GroceryDB WHERE count_products>20")
+    rows = cursor.fetchall()
 
-    # new count_products value
-    new_count_products = 100
-    item_name = "arabica coffee"
-
-    cursor.execute("UPDATE GroceryDB SET count_products = ? WHERE general_name = ?", (new_count_products, item_name))
-    conn.commit()
-    conn.close()
-
-    Query1()
-    
-    return "Update success"
-
-def Query3():
-    '''Delete the row containing arabica coffee from GroceryDB table'''
-    conn = sqlite3.connect("GroceryDB.db")
-    cursor = conn.cursor()
-
-    # define the item_name to delete
-    item_name = "arabica coffee"
-
-    cursor.execute("DELETE FROM GroceryDB WHERE general_name = ?", (item_name, ))
-    conn.commit()
-
-    Query1()
-
-    return "Delete success"
+    for row in rows:
+        print(row)
+    print("rows retrieved")
