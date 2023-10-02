@@ -30,7 +30,7 @@ def read_db(conn):
 
 def update_db(conn):
     cursor = conn.cursor()
-    cursor.execute("UPDATE GroceryDB SET semantic_tree_name = 'coffee' WHERE general_name = 'arabica coffee' LIMIT 5")
+    cursor.execute("UPDATE GroceryDB SET semantic_tree_name = 'coffee' WHERE general_name = 'arabica coffee'")
     conn.commit()
     print("Table updated")
     return "Success"
